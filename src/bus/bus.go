@@ -78,7 +78,7 @@ func (b *BusPoint) insertMany(d *BatchData) (*mongo.InsertManyResult, error) {
 		return nil, err
 	}
 
-	coll := b.mongo.Source.Client.Database(db).Collection(table)
+	coll := b.mongo.Target.Client.Database(db).Collection(table)
 
 	res, err := coll.InsertMany(context.TODO(), d.batchCache, options.InsertMany().SetBypassDocumentValidation(false), options.InsertMany().SetOrdered(false))
 
